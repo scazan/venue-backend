@@ -1,0 +1,7 @@
+*.vim
+*.log
+node_modules
+testData.json
+temp
+.sass-cache
+scripts/utilScripts

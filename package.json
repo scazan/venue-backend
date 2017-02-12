@@ -1,0 +1,25 @@
+{
+  "name": "venue",
+  "version": "0.0.0",
+  "description": "A modern CMS geared towards organizations and individuals in need of event promotion, organizing, etc.",
+  "main": "server/venue.js",
+  "scripts": {
+    "start": "node venue.js",
+    "test": "mocha"
+  },
+  "keywords": [
+    "cms",
+    "art",
+    "nonprofit"
+  ],
+  "author": "Scott Cazan",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^3.5.0",
+    "cheerio": "^0.22.0",
+    "express": "^4.14.1",
+    "mocha": "^3.2.0",
+    "mongoose": "^4.8.2",
+    "supertest": "^3.0.0"
+  }
+}
