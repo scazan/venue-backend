@@ -1,7 +1,7 @@
 {
-  "name": "venue",
+  "name": "venue-backend",
   "version": "0.0.0",
-  "description": "A modern CMS geared towards organizations and individuals in need of event promotion, organizing, etc.",
+  "description": "A modern CMS backend geared towards organizations and individuals in need of event promotion, organizing, etc.",
   "main": "server/venue.js",
   "scripts": {
     "start": "node venue.js",
