@@ -4,18 +4,18 @@ var app = require("../venue.js"),
 	chai = require("chai")
 	expect = chai.expect;
 
-describe("Homepage", function() {
+describe("Admin routes", function() {
 	var request;
 	beforeEach(function() {
 		request = supertest(app)
-			.get("/")
+			.get("/admin")
 			.set("Accept", "text/html");
 	});
 
 
-	it("returns an HTML page", function(done) {
+	it("returns an HTML page redirect when not logged in", function(done) {
 		request.expect("Content-Type", /html/)
-			.expect(200)
+			.expect(302)
 			.end(done);
 	});
 });

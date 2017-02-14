@@ -5,7 +5,7 @@ var express = require("express"),
 var Event = require("../models/event");
 
 // All calendar events
-router.get('/api/events', function(req, res){
+router.get('/events', function(req, res){
 	Event.find()
 		.exec(function(err, events) {
 			if(err) { return next(err); }
@@ -15,10 +15,6 @@ router.get('/api/events', function(req, res){
 });
 
 
-router.get('/', function(req, res){
-	res.send("<html><body>placeholder</body></html>");
-	//res.sendfile( path.join( __dirname, '../../dist/index.html' ) );
-});
 
 
 module.exports = router;
