@@ -1,15 +1,16 @@
 
 var express = require("express"),
+	config = require("./config"),
 	path = require("path"),
 	legacyRoutes = require("./routes/legacy"),
 	mongoose = require("mongoose");
 
 
-mongoose.connect("mongodb://localhost:27017/dogstarorchestra");
+mongoose.connect(config.db.connectionString);
 
 var app = express();
 
-app.set("port", process.env.PORT || 9001);
+app.set("port", config.server.port || 9001);
 
 app.use(legacyRoutes);
 
