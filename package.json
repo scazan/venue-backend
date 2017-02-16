@@ -15,12 +15,15 @@
   "author": "Scott Cazan",
   "license": "ISC",
   "dependencies": {
-    "chai": "^3.5.0",
-    "cheerio": "^0.22.0",
     "express": "^4.14.1",
-    "mocha": "^3.2.0",
     "mongoose": "^4.8.2",
     "passport": "^0.3.2",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "mocha": "^3.2.0",
+    "chai": "^3.5.0",
+    "cheerio": "^0.22.0",
     "supertest": "^3.0.0"
   }
 }

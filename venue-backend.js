@@ -1,29 +1,37 @@
 
 var express = require("express"),
-	config = require("./config"),
 	path = require("path"),
 	legacyRoutes = require("./routes/legacy"),
 	adminRoutes = require("./routes/admin"),
-	mongoose = require("mongoose");
+	mongoose = require("mongoose"),
+	setupPassport = require("./modules/setupPassport");
 
 
-mongoose.connect(config.db.connectionString);
+var venueBackend = function(config) {
+	mongoose.connect(config.db.connectionString);
+	mongoose.connection.on('error', function(error) {
+		console.log('Mongoose error:', error);
+	});
 
-var app = express();
+	setupPassport();
 
-app.set("port", config.server.port || 9001);
+	var app = express();
 
-app.use("/api/v1", legacyRoutes);
-app.use("/admin", adminRoutes);
+	app.set("port", config.server.port || 9001);
 
-app.get('/', function(req, res){
-	res.send("<html><body>Venue CMS</body></html>");
-	//res.sendfile( path.join( __dirname, '../../dist/index.html' ) );
-});
+	app.use("/api/v1", legacyRoutes);
+	app.use("/admin", adminRoutes);
 
-app.listen(app.get("port"), function() {
-	console.log('Server started on ' + app.get("port") );
-});
+	app.get('/', function(req, res){
+		res.send("<html><body>Venue CMS</body></html>");
+		//res.sendfile( path.join( __dirname, '../../dist/index.html' ) );
+	});
 
+	app.listen(app.get("port"), function() {
+		console.log('Server started on ' + app.get("port") );
+	});
 
-module.exports = app;
+	return app;
+};
+
+module.exports = venueBackend;

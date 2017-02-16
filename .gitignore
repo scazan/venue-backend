@@ -6,3 +6,4 @@ temp
 .sass-cache
 scripts/utilScripts
 config.js
+scripts/*.json
