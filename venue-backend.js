@@ -4,6 +4,10 @@ var express = require("express"),
 	legacyRoutes = require("./routes/legacy"),
 	adminRoutes = require("./routes/admin"),
 	mongoose = require("mongoose"),
+	passport = require("passport"),
+	bodyParser = require("body-parser"),
+	cookieParser = require("cookie-parser"),
+	session = require("express-session"),
 	setupPassport = require("./modules/setupPassport");
 
 
@@ -16,6 +20,17 @@ var venueBackend = function(config) {
 	setupPassport();
 
 	var app = express();
+
+	app.use(passport.initialize());
+	app.use(passport.session());
+	app.use(bodyParser.urlencoded({ extended: false }));
+	app.use(cookieParser());
+	// TODO: replace secret with a better solution
+	app.use(session({
+		secret: "TKRv0IJs=HYqrvagQ#&!F!%V]Ww/4KiVs$s,<<MX",
+		resave: true,
+		saveUninitialized: true
+	}));
 
 	app.set("port", config.server.port || 9001);
 
