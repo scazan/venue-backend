@@ -6,7 +6,7 @@ var Event = require("../models/event");
 
 // All calendar events
 router.get('/events', function(req, res){
-	Event.find()
+	Event.find({postStatus: "published"})
 		.exec(function(err, events) {
 			if(err) { return next(err); }
 

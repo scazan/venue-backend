@@ -1,7 +1,7 @@
 
 var express = require("express"),
 	path = require("path"),
-	legacyRoutes = require("./routes/legacy"),
+	apiV1Routes = require("./routes/legacy"),
 	adminRoutes = require("./routes/admin"),
 	mongoose = require("mongoose"),
 	passport = require("passport"),
@@ -34,8 +34,8 @@ var venueBackend = function(config) {
 
 	app.set("port", config.server.port || 9001);
 
-	app.use("/api/v1", legacyRoutes);
-	app.use("/admin", adminRoutes);
+	app.use("/api/v1", apiV1Routes);
+	app.use("/api/v1/admin", adminRoutes);
 
 	app.get('/', function(req, res){
 		res.send("<html><body>Venue CMS</body></html>");

@@ -2,15 +2,15 @@
 var express = require("express"),
 	passport = require("passport"),
 	router = express.Router(),
-	User = require("../models/user");
+	User = require("../models/user"),
+	Event = require("../models/event"),
+	_ = require("underscore");
 
 var ensureAuthenticated = function(req, res, next) {
 	if(req.isAuthenticated() ) {
 		next();
 	}
 	else {
-		//req.flash("info", "You must be logged in");
-		//res.redirect("/admin/login");
 		res.sendStatus(403);
 	}
 };
@@ -21,7 +21,10 @@ router.get('/', ensureAuthenticated, function(req, res){
 });
 
 router.post("/login", passport.authenticate("login"), function(req, res) {
-	res.sendStatus(403);
+	var user = _.clone(req.user);
+	user.password = "";
+
+	res.json(user);
 });
 
 router.post("/logout", function(req, res) {
@@ -29,6 +32,19 @@ router.post("/logout", function(req, res) {
 	res.sendStatus(200);
 });
 
+// Data
+router.get('/events', function(req, res){
+	Event.find()
+		.exec(function(err, events) {
+			if(err) { return next(err); }
+
+			res.json(events);
+		});
+});
+
+router.post('/events', ensureAuthenticated, function(req, res){
+	res.json({});
+});
 
 router.post("/signup", (req, res, next) => {
 	var username = req.body.username,

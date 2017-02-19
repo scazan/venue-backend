@@ -16,7 +16,9 @@ var eventSchema = mongoose.Schema({
 	time: { type: String},
 	title: { type: String},
 	venue: { type: String},
-	zip: { type: String}
+	zip: { type: String},
+	categories: {type: Array},
+	postStatus: { type: String, default: "draft"}
 });
 
 var Event = mongoose.model("events", eventSchema);
