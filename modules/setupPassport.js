@@ -20,7 +20,7 @@ module.exports = () => {
 			User.findOne({ username: username}, (err, user) => {
 				if(err) {return done(err);}
 				if(!user) {
-					return done(null, false, { message: "No user has that username"});
+					return done(null, false, { message: "No matching username found"});
 				}
 
 				user.checkPassword(password, (err, isMatch) => {
@@ -31,7 +31,7 @@ module.exports = () => {
 						return done(null, user);
 					}
 					else {
-						return done(null, false, {message: "Invalid passwd"});
+						return done(null, false, {message: "Invalid password"});
 					}
 				});
 			});

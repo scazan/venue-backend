@@ -5,7 +5,7 @@ var config = require("../config.js");
 	chai = require("chai")
 	expect = chai.expect;
 
-describe("Homepage", function() {
+describe("Public Routes", function() {
 	var request;
 	beforeEach(function() {
 		request = supertest(app)
@@ -95,7 +95,7 @@ describe("Admin logout page", function() {
 
 });
 
-describe("Event add", function() {
+describe("Admin Event add", function() {
 	let request;
 
 

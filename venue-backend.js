@@ -1,6 +1,7 @@
 
 var express = require("express"),
 	path = require("path"),
+	publicRoutes = require("./routes/public"),
 	apiV1Routes = require("./routes/legacy"),
 	adminRoutes = require("./routes/admin"),
 	mongoose = require("mongoose"),
@@ -37,10 +38,9 @@ var venueBackend = function(config) {
 	app.use("/api/v1", apiV1Routes);
 	app.use("/api/v1/admin", adminRoutes);
 
-	app.get('/', function(req, res){
-		res.send("<html><body>Venue CMS</body></html>");
-		//res.sendfile( path.join( __dirname, '../../dist/index.html' ) );
-	});
+	// TODO: Add this into publicRoutes (wasn't working when I tried it earlier)
+	app.use("/static", express.static( path.join( __dirname, 'public/static') ));
+	app.get('/', publicRoutes);
 
 	app.listen(app.get("port"), function() {
 		console.log('Server started on ' + app.get("port") );

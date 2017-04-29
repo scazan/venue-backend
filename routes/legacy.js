@@ -15,6 +15,9 @@ router.get('/events', function(req, res){
 });
 
 
+router.get('/works', function(req, res){
+	res.json({});
+});
 
 
 module.exports = router;
